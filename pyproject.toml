@@ -1,0 +1,99 @@
+[tool.poetry]
+name = "gpcrbeam"
+version = "0.1.0"
+description = "An inference pipeline for determining the native G-protein coupling of a GPCR protein based on sequence analysis."
+authors = ["Zane Davidson <zanerdavidson@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+packages = [{ include = "gpcrbeam", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.13,<4.0"
+typer = { version = ">=0.17.3,<0.18.0", extras = ["all"] }
+rich = ">=14.1.0,<15.0.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+ruff = "^0.12.11"
+mypy = "^1.17.1"
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+codespell = "^2.4.1"
+pip-audit = "^2.9.0"
+
+[tool.poetry.scripts]
+gpcrbeam = "gpcrbeam.cli:app"
+
+# ---------------- Formatting / Linting ----------------
+[tool.black]
+line-length = 100
+target-version = ["py313"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+  "E",
+  "F",
+  "I",
+  "B",
+  "UP",
+  "ANN",
+  "S",
+  "BLE",
+  "PL",
+  "NPY",
+  "PD",
+  "PERF",
+  "COM",
+  "ISC",
+  "ICN",
+  "RUF",
+]
+ignore = [
+  "ANN101",
+  "ANN102", # ignore 'missing type annotation for self/cls'
+  "S101",   #ignore 'assert detected' for unit tests
+]
+fixable = ["ALL"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["gpcrbeam"]
+combine-as-imports = true
+
+# ----------------- Type Checking ---------------------
+[tool.mypy]
+python_version = "3.13"
+warn_unused_configs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+strict_equality = true
+show_error_codes = true
+pretty = true
+plugins = []
+
+mypy_path = ["src"] # mypy path configuration
+
+# -------------------- Testing ------------------------
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q --cov=gpcrbeam --cov-report=term-missing"
+testpaths = ["tests"]
+
+# ------------------- Coverage ------------------------
+[tool.coverage.run]
+branch = true
+source = ["gpcrbeam"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
