@@ -1,6 +1,6 @@
 import typer
 
-from gpcrbeam import __version__
+from .. import __version__
 
 app = typer.Typer(
     help=(

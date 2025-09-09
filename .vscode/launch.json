@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CLI: gpcrbeam (args)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": ".venv/bin/gpcrbeam",
+            "args": [
+                "--help"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Module: python -m gpcrbeam",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "gpcrbeam",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "pytest (current file)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "-q",
+                "${file}"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}
