@@ -1,6 +1,7 @@
 import typer
 
 from .. import __version__
+from . import dataset
 
 app = typer.Typer(
     help=(
@@ -8,8 +9,9 @@ app = typer.Typer(
         "G-protein coupling of a GPCR protein based on sequence analysis."
     ),
     no_args_is_help=True,
-    add_completion=True,
 )
+# Nest dataset creation tools inside main CLI
+app.add_typer(dataset.app, name="dataset")
 
 
 @app.callback(invoke_without_command=True)
@@ -25,11 +27,6 @@ def main(
     if version:
         typer.echo(__version__)
         raise typer.Exit()
-
-
-@app.command(help="Say hello.")
-def hello(name: str | None = "world") -> None:
-    typer.echo(f"Hello, {name}!")
 
 
 if __name__ == "__main__":

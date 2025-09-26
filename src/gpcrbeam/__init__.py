@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from importlib.metadata import PackageNotFoundError, version as _version
+from importlib.metadata import PackageNotFoundError, version
 
 __version__: str
 try:
-    __version__ = _version("gpcrbeam")
+    __version__ = version("gpcrbeam")
 except PackageNotFoundError:
     __version__ = "0.0.0"
 

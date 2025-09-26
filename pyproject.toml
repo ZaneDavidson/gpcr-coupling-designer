@@ -11,6 +11,12 @@ packages = [{ include = "gpcrbeam", from = "src" }]
 python = ">=3.13,<4.0"
 typer = { version = ">=0.17.3,<0.18.0", extras = ["all"] }
 rich = ">=14.1.0,<15.0.0"
+poetry-dotenv-plugin = "^0.2.0"
+loguru = "^0.7.3"
+tqdm = "^4.67.1"
+python-dotenv = "^1.1.1"
+requests = "^2.32.5"
+biopython = "^1.85"
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
@@ -22,6 +28,8 @@ codespell = "^2.4.1"
 pip-audit = "^2.9.0"
 mkdocs = "^1.6.1"
 mkdocs-material = "^9.6.19"
+types-requests = "^2.32.4.20250913"
+types-tqdm = "^4.67.0.20250809"
 
 [tool.poetry.scripts]
 gpcrbeam = "gpcrbeam.cli:app"
